@@ -1,3 +1,12 @@
+## This Fork
+
+The purpose of this fork is to get the old xbee binding for openhab 1.3 working again. The old xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
+
+I have also replaced the nrjavaserial jar file with one that does not finalize the RXTXPort class:
+https://github.com/NeuronRobotics/nrjavaserial
+
+The code will compile with maven until it gets to Building openHAB Model Sitemap UI Plugin 1.6.0-SNAPSHOT, at which point the java runtime environment encounters a fatal error.
+
 ## Introduction
 
 The open Home Automation Bus (openHAB) project aims at providing a universal integration platform for all things around home automation. It is a pure Java solution, fully based on OSGi. The Equinox OSGi runtime and Jetty as a web server build the core foundation of the runtime.
