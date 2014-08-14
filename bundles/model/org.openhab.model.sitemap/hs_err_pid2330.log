@@ -1,0 +1,650 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 54538240 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2745), pid=2330, tid=2434050880
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_67-b01) (build 1.7.0_67-b01)
+# Java VM: Java HotSpot(TM) Client VM (24.65-b04 mixed mode linux-x86 )
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0xb7661800):  VMThread [stack: 0x910ca000,0x9114b000] [id=2336]
+
+Stack: [0x910ca000,0x9114b000],  sp=0x911499e0,  free space=510k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x50d7c6]  VMError::report_and_die()+0x1a6
+V  [libjvm.so+0x1de1e2]  report_vm_out_of_memory(char const*, int, unsigned int, char const*)+0x72
+V  [libjvm.so+0x4082d1]  os::Linux::commit_memory_impl(char*, unsigned int, bool)+0xe1
+V  [libjvm.so+0x408798]  os::pd_commit_memory(char*, unsigned int, unsigned int, bool)+0x28
+V  [libjvm.so+0x401f0c]  os::commit_memory(char*, unsigned int, unsigned int, bool)+0x2c
+V  [libjvm.so+0x5093dc]  VirtualSpace::expand_by(unsigned int, bool)+0x20c
+V  [libjvm.so+0x25ae1b]  OneContigSpaceCardGeneration::grow_by(unsigned int)+0x1b
+V  [libjvm.so+0x25b13b]  CardGeneration::expand(unsigned int, unsigned int)+0x5b
+V  [libjvm.so+0x25b1ba]  OneContigSpaceCardGeneration::expand(unsigned int, unsigned int)+0x2a
+V  [libjvm.so+0x4ce455]  TenuredGeneration::compute_new_size()+0x1d5
+V  [libjvm.so+0x250f21]  GenCollectedHeap::do_collection(bool, bool, unsigned int, bool, int)+0x681
+V  [libjvm.so+0x1915e7]  GenCollectorPolicy::satisfy_failed_allocation(unsigned int, bool)+0xe7
+V  [libjvm.so+0x50e974]  VM_GenCollectForAllocation::doit()+0x74
+V  [libjvm.so+0x5177f7]  VM_Operation::evaluate()+0x47
+V  [libjvm.so+0x515893]  VMThread::evaluate_operation(VM_Operation*)+0xb3
+V  [libjvm.so+0x515c30]  VMThread::loop()+0x1b0
+V  [libjvm.so+0x516095]  VMThread::run()+0x85
+V  [libjvm.so+0x40a5a9]  java_start(Thread*)+0x119
+C  [libpthread.so.0+0x6d4c]  start_thread+0xcc
+
+VM_Operation (0xb77b9214): GenCollectForAllocation, mode: safepoint, requested by thread 0xb7611800
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x8ffde400 JavaThread "com.google.inject.internal.util.$Finalizer" daemon [_thread_blocked, id=2343, stack(0x9007c000,0x900cd000)]
+  0xb7679000 JavaThread "Service Thread" daemon [_thread_blocked, id=2341, stack(0x90bdd000,0x90c2e000)]
+  0xb7677400 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=2340, stack(0x90c2e000,0x90caf000)]
+  0xb7675800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2339, stack(0x90caf000,0x90d00000)]
+  0xb7665c00 JavaThread "Finalizer" daemon [_thread_blocked, id=2338, stack(0x91028000,0x91079000)]
+  0xb7664000 JavaThread "Reference Handler" daemon [_thread_blocked, id=2337, stack(0x91079000,0x910ca000)]
+  0xb7611800 JavaThread "main" [_thread_blocked, id=2335, stack(0xb776b000,0xb77bc000)]
+
+Other Threads:
+=>0xb7661800 VMThread [stack: 0x910ca000,0x9114b000] [id=2336]
+  0xb767b800 WatcherThread [stack: 0x90b5c000,0x90bdd000] [id=2342]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0xb760ee00] Threads_lock - owner thread: 0xb7661800
+[0xb760f210] Heap_lock - owner thread: 0xb7611800
+
+Heap
+ def new generation   total 35840K, used 0K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+  to   space 3968K,   0% used [0x93320000, 0x93320000, 0x93700000)
+ tenured generation   total 82404K, used 81397K [0x9bea0000, 0xa0f19000, 0xb1400000)
+   the space 82404K,  98% used [0x9bea0000, 0xa0e1d468, 0xa0e1d600, 0xa0f19000)
+ compacting perm gen  total 16128K, used 16107K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23baf08, 0xb23bb000, 0xb23c0000)
+No shared spaces configured.
+
+Card table byte_map: [0xb545f000,0xb5580000] byte_map_base: 0xb4fd5000
+
+Polling page: 0xb77cd000
+
+Code Cache  [0xb5600000, 0xb5af8000, 0xb7600000)
+ total_blobs=3190 nmethods=3022 adapters=102 free_code_cache=27714Kb largest_free_block=28375808
+
+Compilation events (10 events):
+Event: 21.623 Thread 0xb7677400 3060             org.eclipse.internal.xtend.expression.ast.TypeSelectExpression::executeTypeSelect (129 bytes)
+Event: 21.624 Thread 0xb7677400 nmethod 3060 0xb5aed588 code [0xb5aed7a0, 0xb5aedd3c]
+Event: 21.625 Thread 0xb7677400 3061   !         sun.reflect.GeneratedMethodAccessor37::invoke (61 bytes)
+Event: 21.625 Thread 0xb7677400 nmethod 3061 0xb5aee548 code [0xb5aee6d0, 0xb5aee9ac]
+Event: 21.625 Thread 0xb7677400 3062             java.util.regex.Matcher::quoteReplacement (82 bytes)
+Event: 21.626 Thread 0xb7677400 nmethod 3062 0xb5aeec48 code [0xb5aeedd0, 0xb5aef1cc]
+Event: 21.630 Thread 0xb7677400 3063             org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl$15::flattenRec (57 bytes)
+Event: 21.630 Thread 0xb7677400 nmethod 3063 0xb5aef7c8 code [0xb5aef920, 0xb5aefae4]
+Event: 21.634 Thread 0xb7677400 3064             org.eclipse.internal.xtend.expression.ast.BooleanOperation::evaluateToBoolean (69 bytes)
+Event: 21.634 Thread 0xb7677400 nmethod 3064 0xb5aefc48 code [0xb5aefdd0, 0xb5af013c]
+
+GC Heap History (10 events):
+Event: 18.351 GC heap after
+Heap after GC invocations=120 (full 5):
+ def new generation   total 35840K, used 3020K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,  76% used [0x93320000, 0x93613048, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 65670K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  82% used [0x9bea0000, 0x9fec1818, 0x9fec1a00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6f90, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+}
+Event: 18.944 GC heap before
+{Heap before GC invocations=120 (full 5):
+ def new generation   total 35840K, used 34892K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K, 100% used [0x91400000, 0x93320000, 0x93320000)
+  from space 3968K,  76% used [0x93320000, 0x93613048, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 65670K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  82% used [0x9bea0000, 0x9fec1818, 0x9fec1a00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fa0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+Event: 18.970 GC heap after
+Heap after GC invocations=121 (full 5):
+ def new generation   total 35840K, used 3008K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,  75% used [0x93700000, 0x939f0210, 0x93ae0000)
+  to   space 3968K,   0% used [0x93320000, 0x93320000, 0x93700000)
+ tenured generation   total 79588K, used 68624K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  86% used [0x9bea0000, 0xa01a43c0, 0xa01a4400, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fa0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+}
+Event: 19.601 GC heap before
+{Heap before GC invocations=121 (full 5):
+ def new generation   total 35840K, used 34880K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K, 100% used [0x91400000, 0x93320000, 0x93320000)
+  from space 3968K,  75% used [0x93700000, 0x939f0210, 0x93ae0000)
+  to   space 3968K,   0% used [0x93320000, 0x93320000, 0x93700000)
+ tenured generation   total 79588K, used 68624K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  86% used [0x9bea0000, 0xa01a43c0, 0xa01a4400, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fb0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+Event: 19.658 GC heap after
+Heap after GC invocations=122 (full 5):
+ def new generation   total 35840K, used 3015K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,  76% used [0x93320000, 0x93611f78, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 71574K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  89% used [0x9bea0000, 0xa04859e8, 0xa0485a00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fb0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+}
+Event: 20.612 GC heap before
+{Heap before GC invocations=122 (full 5):
+ def new generation   total 35840K, used 34887K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K, 100% used [0x91400000, 0x93320000, 0x93320000)
+  from space 3968K,  76% used [0x93320000, 0x93611f78, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 71574K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  89% used [0x9bea0000, 0xa04859e8, 0xa0485a00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fd0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+Event: 20.643 GC heap after
+Heap after GC invocations=123 (full 5):
+ def new generation   total 35840K, used 3967K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,  99% used [0x93700000, 0x93adfff8, 0x93ae0000)
+  to   space 3968K,   0% used [0x93320000, 0x93320000, 0x93700000)
+ tenured generation   total 79588K, used 75544K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  94% used [0x9bea0000, 0xa08661a8, 0xa0866200, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16091K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b6fd0, 0xb23b7000, 0xb23c0000)
+No shared spaces configured.
+}
+Event: 21.232 GC heap before
+{Heap before GC invocations=123 (full 5):
+ def new generation   total 35840K, used 35839K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K, 100% used [0x91400000, 0x93320000, 0x93320000)
+  from space 3968K,  99% used [0x93700000, 0x93adfff8, 0x93ae0000)
+  to   space 3968K,   0% used [0x93320000, 0x93320000, 0x93700000)
+ tenured generation   total 79588K, used 75544K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  94% used [0x9bea0000, 0xa08661a8, 0xa0866200, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16093K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b7430, 0xb23b7600, 0xb23c0000)
+No shared spaces configured.
+Event: 21.258 GC heap after
+Heap after GC invocations=124 (full 5):
+ def new generation   total 35840K, used 2880K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K,   0% used [0x91400000, 0x91400000, 0x93320000)
+  from space 3968K,  72% used [0x93320000, 0x935f0008, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 79474K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  99% used [0x9bea0000, 0xa0c3c840, 0xa0c3ca00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16093K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23b7430, 0xb23b7600, 0xb23c0000)
+No shared spaces configured.
+}
+Event: 21.636 GC heap before
+{Heap before GC invocations=124 (full 5):
+ def new generation   total 35840K, used 34752K [0x91400000, 0x93ae0000, 0x9bea0000)
+  eden space 31872K, 100% used [0x91400000, 0x93320000, 0x93320000)
+  from space 3968K,  72% used [0x93320000, 0x935f0008, 0x93700000)
+  to   space 3968K,   0% used [0x93700000, 0x93700000, 0x93ae0000)
+ tenured generation   total 79588K, used 79474K [0x9bea0000, 0xa0c59000, 0xb1400000)
+   the space 79588K,  99% used [0x9bea0000, 0xa0c3c840, 0xa0c3ca00, 0xa0c59000)
+ compacting perm gen  total 16128K, used 16107K [0xb1400000, 0xb23c0000, 0xb5400000)
+   the space 16128K,  99% used [0xb1400000, 0xb23baf08, 0xb23bb000, 0xb23c0000)
+No shared spaces configured.
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 21.592 Thread 0xb7611800 Threw 0x9292e890 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.592 Thread 0xb7611800 Threw 0x9292f0a0 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.592 Thread 0xb7611800 Threw 0x92941040 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.592 Thread 0xb7611800 Threw 0x929412f0 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/classfile/systemDictionary.cpp:185
+Event: 21.592 Thread 0xb7611800 Threw 0x92941e60 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.592 Thread 0xb7611800 Threw 0x929547b0 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.592 Thread 0xb7611800 Threw 0x92954fe8 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.593 Thread 0xb7611800 Threw 0x92967950 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 21.593 Thread 0xb7611800 Threw 0x92967c08 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/classfile/systemDictionary.cpp:185
+Event: 21.605 Thread 0xb7611800 Threw 0x92b96a20 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u67/1368/hotspot/src/share/vm/prims/jvm.cpp:1244
+
+Events (10 events):
+Event: 21.592 loading class 0x8fa5cb30 done
+Event: 21.592 loading class 0x8f9001a0
+Event: 21.592 loading class 0x8f9001a0 done
+Event: 21.592 loading class 0x8f9001a0
+Event: 21.592 loading class 0x8f9001a0 done
+Event: 21.593 loading class 0x8f9001a0
+Event: 21.593 loading class 0x8f9001a0 done
+Event: 21.605 loading class 0x8f96d9e0
+Event: 21.605 loading class 0x8f96d9e0 done
+Event: 21.636 Executing VM operation: GenCollectForAllocation
+
+
+Dynamic libraries:
+00110000-00123000 r-xp 00000000 08:01 181160     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/jli/libjli.so
+00123000-00124000 rw-p 00012000 08:01 181160     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/jli/libjli.so
+00124000-0012f000 r-xp 00000000 08:01 181168     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libverify.so
+0012f000-00130000 rw-p 0000b000 08:01 181168     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libverify.so
+00130000-0013b000 r-xp 00000000 08:01 265891     /lib/i386-linux-gnu/libnss_files-2.15.so
+0013b000-0013c000 r--p 0000a000 08:01 265891     /lib/i386-linux-gnu/libnss_files-2.15.so
+0013c000-0013d000 rw-p 0000b000 08:01 265891     /lib/i386-linux-gnu/libnss_files-2.15.so
+0014f000-00165000 r-xp 00000000 08:01 265885     /lib/i386-linux-gnu/libnsl-2.15.so
+00165000-00166000 r--p 00015000 08:01 265885     /lib/i386-linux-gnu/libnsl-2.15.so
+00166000-00167000 rw-p 00016000 08:01 265885     /lib/i386-linux-gnu/libnsl-2.15.so
+00167000-00169000 rw-p 00000000 00:00 0 
+001eb000-0038a000 r-xp 00000000 08:01 265840     /lib/i386-linux-gnu/libc-2.15.so
+0038a000-0038c000 r--p 0019f000 08:01 265840     /lib/i386-linux-gnu/libc-2.15.so
+0038c000-0038d000 rw-p 001a1000 08:01 265840     /lib/i386-linux-gnu/libc-2.15.so
+0038d000-00390000 rw-p 00000000 00:00 0 
+0042f000-00439000 r-xp 00000000 08:01 265895     /lib/i386-linux-gnu/libnss_nis-2.15.so
+00439000-0043a000 r--p 00009000 08:01 265895     /lib/i386-linux-gnu/libnss_nis-2.15.so
+0043a000-0043b000 rw-p 0000a000 08:01 265895     /lib/i386-linux-gnu/libnss_nis-2.15.so
+0047f000-004a9000 r-xp 00000000 08:01 265872     /lib/i386-linux-gnu/libm-2.15.so
+004a9000-004aa000 r--p 00029000 08:01 265872     /lib/i386-linux-gnu/libm-2.15.so
+004aa000-004ab000 rw-p 0002a000 08:01 265872     /lib/i386-linux-gnu/libm-2.15.so
+0073c000-00743000 r-xp 00000000 08:01 265926     /lib/i386-linux-gnu/librt-2.15.so
+00743000-00744000 r--p 00006000 08:01 265926     /lib/i386-linux-gnu/librt-2.15.so
+00744000-00745000 rw-p 00007000 08:01 265926     /lib/i386-linux-gnu/librt-2.15.so
+00756000-00776000 r-xp 00000000 08:01 265820     /lib/i386-linux-gnu/ld-2.15.so
+00776000-00777000 r--p 0001f000 08:01 265820     /lib/i386-linux-gnu/ld-2.15.so
+00777000-00778000 rw-p 00020000 08:01 265820     /lib/i386-linux-gnu/ld-2.15.so
+00792000-007b5000 r-xp 00000000 08:01 181114     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libjava.so
+007b5000-007b6000 rw-p 00023000 08:01 181114     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libjava.so
+0082d000-00844000 r-xp 00000000 08:01 265920     /lib/i386-linux-gnu/libpthread-2.15.so
+00844000-00845000 r--p 00016000 08:01 265920     /lib/i386-linux-gnu/libpthread-2.15.so
+00845000-00846000 rw-p 00017000 08:01 265920     /lib/i386-linux-gnu/libpthread-2.15.so
+00846000-00848000 rw-p 00000000 00:00 0 
+00863000-00878000 r-xp 00000000 08:01 181157     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libnet.so
+00878000-00879000 rw-p 00014000 08:01 181157     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libnet.so
+0091f000-00926000 r-xp 00000000 08:01 265887     /lib/i386-linux-gnu/libnss_compat-2.15.so
+00926000-00927000 r--p 00006000 08:01 265887     /lib/i386-linux-gnu/libnss_compat-2.15.so
+00927000-00928000 rw-p 00007000 08:01 265887     /lib/i386-linux-gnu/libnss_compat-2.15.so
+0095b000-00972000 r-xp 00000000 08:01 181144     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libzip.so
+00972000-00973000 rw-p 00017000 08:01 181144     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libzip.so
+00a0b000-00a0c000 r-xp 00000000 00:00 0          [vdso]
+00ad5000-00ae3000 r-xp 00000000 08:01 181124     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libnio.so
+00ae3000-00ae4000 rw-p 0000e000 08:01 181124     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/libnio.so
+00be0000-00be3000 r-xp 00000000 08:01 265853     /lib/i386-linux-gnu/libdl-2.15.so
+00be3000-00be4000 r--p 00002000 08:01 265853     /lib/i386-linux-gnu/libdl-2.15.so
+00be4000-00be5000 rw-p 00003000 08:01 265853     /lib/i386-linux-gnu/libdl-2.15.so
+00be5000-01176000 r-xp 00000000 08:01 181131     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/client/libjvm.so
+01176000-01197000 rw-p 00591000 08:01 181131     /usr/lib/jvm/jdk1.7.0_67/jre/lib/i386/client/libjvm.so
+01197000-015b7000 rw-p 00000000 00:00 0 
+08048000-08049000 r-xp 00000000 08:01 180816     /usr/lib/jvm/jdk1.7.0_67/jre/bin/java
+08049000-0804a000 rw-p 00000000 08:01 180816     /usr/lib/jvm/jdk1.7.0_67/jre/bin/java
+080f3000-0839d000 rw-p 00000000 00:00 0          [heap]
+8f700000-8f793000 rw-p 00000000 00:00 0 
+8f793000-8f800000 ---p 00000000 00:00 0 
+8f900000-8f9cf000 rw-p 00000000 00:00 0 
+8f9cf000-8fa00000 ---p 00000000 00:00 0 
+8fa00000-8faf1000 rw-p 00000000 00:00 0 
+8faf1000-8fb00000 ---p 00000000 00:00 0 
+8fb00000-8fc00000 rw-p 00000000 00:00 0 
+8fd00000-8fded000 rw-p 00000000 00:00 0 
+8fded000-8fe00000 ---p 00000000 00:00 0 
+8fe00000-8fef7000 rw-p 00000000 00:00 0 
+8fef7000-8ff00000 ---p 00000000 00:00 0 
+8ff00000-90000000 rw-p 00000000 00:00 0 
+90064000-90072000 r--s 0015c000 08:01 319536     /home/sniporbob/github/openhab/bundles/model/org.openhab.model.sitemap/.antlr-generator-3.2.0.jar
+90072000-9007c000 r--s 00251000 08:01 181067     /usr/lib/jvm/jdk1.7.0_67/jre/lib/resources.jar
+9007c000-9007f000 ---p 00000000 00:00 0 
+9007f000-900cd000 rw-p 00000000 00:00 0 
+900cd000-900e5000 r--s 00219000 08:01 188707     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.swt.cocoa.macosx.x86_64/3.100.1.v4236b/org.eclipse.swt.cocoa.macosx.x86_64-3.100.1.v4236b.jar
+900e5000-90100000 r--s 0027c000 08:01 188703     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.swt.win32.win32.x86/3.100.1.v4236b/org.eclipse.swt.win32.win32.x86-3.100.1.v4236b.jar
+90100000-90200000 rw-p 00000000 00:00 0 
+90204000-9021a000 r--s 00260000 08:01 188699     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.swt.gtk.linux.x86_64/3.100.1.v4236b/org.eclipse.swt.gtk.linux.x86_64-3.100.1.v4236b.jar
+9021a000-90230000 r--s 00233000 08:01 188566     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.swt.gtk.linux.x86/3.100.1.v4236b/org.eclipse.swt.gtk.linux.x86-3.100.1.v4236b.jar
+90230000-90231000 r--s 00003000 08:01 188563     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.w3c.dom.smil/1.0.0.v200806040011/org.w3c.dom.smil-1.0.0.v200806040011.jar
+90231000-9023e000 r--s 00089000 08:01 188554     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.commons.collections/3.2.0.v2013030210310/org.apache.commons.collections-3.2.0.v2013030210310.jar
+9023e000-90240000 r--s 00003000 08:01 524817     /home/sniporbob/github/openhab/bundles/model/org.openhab.model.core/target/org.openhab.model.core-1.6.0-SNAPSHOT.jar
+90240000-90242000 r--s 00007000 08:01 188551     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.slf4j.api/1.7.2.v20121108-1250/org.slf4j.api-1.7.2.v20121108-1250.jar
+90242000-9024b000 r--s 00085000 08:01 182849     /home/sniporbob/github/openhab/bundles/core/org.openhab.core.scheduler/lib/quartz-all-2.1.7.jar
+9024b000-9024c000 r--s 00084000 08:01 524769     /home/sniporbob/github/openhab/bundles/core/org.openhab.core.scheduler/target/org.openhab.core.scheduler-1.6.0-SNAPSHOT.jar
+9024c000-90250000 r--s 00026000 08:01 188557     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.commons.io/2.0.1.v201105210651/org.apache.commons.io-2.0.1.v201105210651.jar
+90250000-90251000 r--s 00002000 08:01 524789     /home/sniporbob/github/openhab/bundles/config/org.openhab.config.core/target/org.openhab.config.core-1.6.0-SNAPSHOT.jar
+90251000-90254000 r--s 00015000 08:01 188542     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.xbase.lib/2.3.0.v201206120633/org.eclipse.xtext.xbase.lib-2.3.0.v201206120633.jar
+90254000-90255000 r--s 00003000 08:01 188539     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.ecore/2.3.0.v201206120633/org.eclipse.xtext.ecore-2.3.0.v201206120633.jar
+90255000-90256000 r--s 00003000 08:01 188536     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.annotation/1.0.1.v20130111-135246/org.eclipse.jdt.annotation-1.0.1.v20130111-135246.jar
+90256000-90257000 r--s 00003000 08:01 188533     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.smap/2.3.0.v201206120633/org.eclipse.xtext.smap-2.3.0.v201206120633.jar
+90257000-90259000 r--s 0000e000 08:01 188530     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtend.typesystem.emf/1.0.1.v201108020519/org.eclipse.xtend.typesystem.emf-1.0.1.v201108020519.jar
+90259000-90265000 r--s 00075000 08:01 188527     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtend/1.1.0.v201108020519/org.eclipse.xtend-1.1.0.v201108020519.jar
+90265000-9026a000 r--s 00036000 08:01 188524     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xpand/1.1.0.v201108020519/org.eclipse.xpand-1.1.0.v201108020519.jar
+9026a000-90300000 r--s 00946000 08:01 188497     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.ui/3.8.2.v20130107-165834/org.eclipse.jdt.ui-3.8.2.v20130107-165834.jar
+90300000-903fe000 rw-p 00000000 00:00 0 
+903fe000-90400000 ---p 00000000 00:00 0 
+90401000-90404000 r--s 00017000 08:01 188521     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.views.properties.tabbed/3.5.300.v20120912-132807/org.eclipse.ui.views.properties.tabbed-3.5.300.v20120912-132807.jar
+90404000-90446000 r--s 00360000 08:01 188518     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.workbench/3.104.0.v20130204-164612/org.eclipse.ui.workbench-3.104.0.v20130204-164612.jar
+90446000-9044a000 r--s 0001a000 08:01 188515     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.navigator.resources/3.4.400.v20120705-114010/org.eclipse.ui.navigator.resources-3.4.400.v20120705-114010.jar
+9044a000-90454000 r--s 0005a000 08:01 188512     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.navigator/3.5.200.v20120705-114103/org.eclipse.ui.navigator-3.5.200.v20120705-114103.jar
+90454000-9045e000 r--s 00066000 08:01 188509     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ltk.ui.refactoring/3.7.0.v20120523-1543/org.eclipse.ltk.ui.refactoring-3.7.0.v20120523-1543.jar
+9045e000-90467000 r--s 00059000 08:01 188506     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.team.core/3.6.100.v20120524-0627/org.eclipse.team.core-3.6.100.v20120524-0627.jar
+90467000-90482000 r--s 00146000 08:01 188503     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.team.ui/3.6.201.v20130125-135424/org.eclipse.team.ui-3.6.201.v20130125-135424.jar
+90482000-9048b000 r--s 0006a000 08:01 188500     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.search/3.8.0.v20120523-1540/org.eclipse.search-3.8.0.v20120523-1540.jar
+9048b000-90498000 r--s 000c6000 08:01 188736     /home/sniporbob/.m2/repository/.cache/tycho/org.eclipse.jdt.debug-3.7.101.v20120913-153601.jar/jdimodel.jar
+90498000-9049c000 r--s 0000e000 08:01 188735     /home/sniporbob/.m2/repository/.cache/tycho/org.eclipse.jdt.debug-3.7.101.v20120913-153601.jar/jdi.jar
+9049c000-904a3000 r--s 00049000 08:01 188491     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ltk.core.refactoring/3.6.0.v20120523-1543/org.eclipse.ltk.core.refactoring-3.6.0.v20120523-1543.jar
+904a3000-904a6000 r--s 00013000 08:01 188488     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.core.manipulation/1.5.0.v20120523-1543/org.eclipse.jdt.core.manipulation-1.5.0.v20120523-1543.jar
+904a6000-904a9000 r--s 00018000 08:01 188485     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.security/1.1.100.v20120522-1841/org.eclipse.equinox.security-1.1.100.v20120522-1841.jar
+904a9000-904ad000 r--s 0001d000 08:01 188482     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.p2.repository/2.2.0.v20120524-1945/org.eclipse.equinox.p2.repository-2.2.0.v20120524-1945.jar
+904ad000-904b0000 r--s 0001a000 08:01 188479     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.p2.metadata.repository/1.2.100.v20120524-1717/org.eclipse.equinox.p2.metadata.repository-1.2.100.v20120524-1717.jar
+904b0000-904b8000 r--s 0004c000 08:01 188476     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.p2.metadata/2.1.0.v20120430-2001/org.eclipse.equinox.p2.metadata-2.1.0.v20120430-2001.jar
+904b8000-904bc000 r--s 0002d000 08:01 188473     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.p2.engine/2.2.0.v20130121-021919/org.eclipse.equinox.p2.engine-2.2.0.v20130121-021919.jar
+904bc000-904be000 r--s 00010000 08:01 188470     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.p2.core/2.2.0.v20120430-0525/org.eclipse.equinox.p2.core-2.2.0.v20120430-0525.jar
+904be000-904c1000 r--s 00011000 08:01 188467     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.util/1.0.400.v20120917-192807/org.eclipse.equinox.util-1.0.400.v20120917-192807.jar
+904c1000-904df000 r--s 00167000 08:01 188464     /home/sniporbob/.m2/repository/p2/osgi/bundle/com.google.guava/10.0.1.v201203051515/com.google.guava-10.0.1.v201203051515.jar
+904df000-904f9000 r--s 00139000 08:01 188461     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.debug.ui/3.6.100.v20120530-1425/org.eclipse.jdt.debug.ui-3.6.100.v20120530-1425.jar
+904f9000-904fb000 r--s 00019000 08:01 181063     /usr/lib/jvm/jdk1.7.0_67/jre/lib/jce.jar
+904fb000-904ff000 r--s 0008a000 08:01 181058     /usr/lib/jvm/jdk1.7.0_67/jre/lib/jsse.jar
+904ff000-90500000 r--s 00006000 08:01 188458     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe2.launch/2.3.0.v201206120758/org.eclipse.emf.mwe2.launch-2.3.0.v201206120758.jar
+90500000-90600000 rw-p 00000000 00:00 0 
+90600000-906ff000 rw-p 00000000 00:00 0 
+906ff000-90700000 ---p 00000000 00:00 0 
+90700000-90708000 r--s 0005e000 08:01 188784     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.log4j/1.2.15.v201012070815/org.apache.log4j-1.2.15.v201012070815.jar
+90708000-9070a000 r--s 00006000 08:01 188452     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe2.lib/2.3.0.v201206110920/org.eclipse.emf.mwe2.lib-2.3.0.v201206110920.jar
+9070a000-9070e000 r--s 0002f000 08:01 188449     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.antlr.runtime/3.2.0.v201101311130/org.antlr.runtime-3.2.0.v201101311130.jar
+9070e000-90712000 r--s 0002f000 08:01 188446     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.util/2.3.0.v201206120633/org.eclipse.xtext.util-2.3.0.v201206120633.jar
+90712000-9071b000 r--s 0005c000 08:01 188443     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.common.types/2.3.0.v201206120633/org.eclipse.xtext.common.types-2.3.0.v201206120633.jar
+9071b000-9072f000 r--s 000bc000 08:01 188440     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext.generator/2.3.0.v201206120633/org.eclipse.xtext.generator-2.3.0.v201206120633.jar
+9072f000-9075c000 r--s 001dc000 08:01 188437     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.xtext/2.3.0.v201206120633/org.eclipse.xtext-2.3.0.v201206120633.jar
+9075c000-90760000 r--s 0002f000 08:01 188434     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe2.language/2.3.0.v201206120758/org.eclipse.emf.mwe2.language-2.3.0.v201206120758.jar
+90760000-90761000 r--s 00007000 08:01 188431     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe.utils/1.2.1.v201206110920/org.eclipse.emf.mwe.utils-1.2.1.v201206110920.jar
+90761000-90763000 r--s 00002000 08:01 188428     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe2.runtime/2.3.0.v201206110920/org.eclipse.emf.mwe2.runtime-2.3.0.v201206110920.jar
+90763000-90768000 r--s 00029000 08:01 188425     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.mwe.core/1.2.1.v201206110920/org.eclipse.emf.mwe.core-1.2.1.v201206110920.jar
+90768000-90770000 r--s 000f0000 08:01 188422     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.codegen.ecore/2.8.2.v20130125-0826/org.eclipse.emf.codegen.ecore-2.8.2.v20130125-0826.jar
+90770000-90775000 r--s 00049000 08:01 188419     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.launching/3.6.101.v20130111-183046/org.eclipse.jdt.launching-3.6.101.v20130111-183046.jar
+90775000-9079f000 r--s 0046e000 08:01 188416     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jdt.core/3.8.3.v20130121-145325/org.eclipse.jdt.core-3.8.3.v20130121-145325.jar
+9079f000-907a4000 r--s 00030000 08:01 188413     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.common/2.8.0.v20130125-0546/org.eclipse.emf.common-2.8.0.v20130125-0546.jar
+907a4000-907a9000 r--s 00042000 08:01 188410     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.codegen/2.8.0.v20130125-0826/org.eclipse.emf.codegen-2.8.0.v20130125-0826.jar
+907a9000-907ab000 r--s 00007000 08:01 188407     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.event/1.2.200.v20120522-2049/org.eclipse.equinox.event-1.2.200.v20120522-2049.jar
+907ab000-907ae000 r--s 0002d000 08:01 188404     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.ds/1.4.1.v20120926-201320/org.eclipse.equinox.ds-1.4.1.v20120926-201320.jar
+907ae000-907af000 r--s 00002000 08:01 188401     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.workbench3/0.12.0.v20120521-2329/org.eclipse.e4.ui.workbench3-0.12.0.v20120521-2329.jar
+907af000-907b7000 r--s 0003c000 08:01 188398     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jface.databinding/1.6.0.v20120912-132807/org.eclipse.jface.databinding-1.6.0.v20120912-132807.jar
+907b7000-907bb000 r--s 00026000 08:01 188395     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.workbench.swt/0.10.3.v20130124-133900/org.eclipse.e4.ui.workbench.swt-0.10.3.v20130124-133900.jar
+907bb000-907c2000 r--s 0004a000 08:01 188392     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.workbench.renderers.swt/0.10.3.v20130124-170312/org.eclipse.e4.ui.workbench.renderers.swt-0.10.3.v20130124-170312.jar
+907c2000-907c6000 r--s 0001d000 08:01 188389     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.workbench.addons.swt/0.10.3.v20130124-185622/org.eclipse.e4.ui.workbench.addons.swt-0.10.3.v20130124-185622.jar
+907c6000-907c8000 r--s 00013000 08:01 188386     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.ecore.change/2.8.0.v20130125-0546/org.eclipse.emf.ecore.change-2.8.0.v20130125-0546.jar
+907c8000-907cd000 r--s 00035000 08:01 188383     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.workbench/0.11.0.v20130125-100758/org.eclipse.e4.ui.workbench-0.11.0.v20130125-100758.jar
+907cd000-907ce000 r--s 00003000 08:01 188380     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.widgets/0.12.3.v20130123-162658/org.eclipse.e4.ui.widgets-0.12.3.v20130123-162658.jar
+907ce000-907d0000 r--s 00005000 08:01 188377     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.services/0.10.3.v20130123-162658/org.eclipse.e4.ui.services-0.10.3.v20130123-162658.jar
+907d0000-907e2000 r--s 00105000 08:01 188371     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.ecore/2.8.3.v20130125-0546/org.eclipse.emf.ecore-2.8.3.v20130125-0546.jar
+907e2000-907e6000 r--s 00021000 08:01 188359     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.css.swt/0.10.3.v20130123-162658/org.eclipse.e4.ui.css.swt-0.10.3.v20130123-162658.jar
+907e6000-907ec000 r--s 0002b000 08:01 188356     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.css.core/0.10.2.v20120912-132817/org.eclipse.e4.ui.css.core-0.10.2.v20120912-132817.jar
+907ec000-90800000 r--s 000f7000 08:01 188353     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jface/3.8.102.v20130123-162658/org.eclipse.jface-3.8.102.v20130123-162658.jar
+90800000-908fc000 rw-p 00000000 00:00 0 
+908fc000-90900000 ---p 00000000 00:00 0 
+90900000-90904000 r--s 00033000 08:01 188374     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.emf.ecore.xmi/2.8.1.v20130125-0546/org.eclipse.emf.ecore.xmi-2.8.1.v20130125-0546.jar
+90904000-9090b000 r--s 00050000 08:01 188368     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.model.workbench/0.10.1.v20120523-1955/org.eclipse.e4.ui.model.workbench-0.10.1.v20120523-1955.jar
+9090b000-9090c000 r--s 00003000 08:01 188365     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.di/0.10.1.v20120523-1955/org.eclipse.e4.ui.di-0.10.1.v20120523-1955.jar
+9090c000-9090e000 r--s 00006000 08:01 188341     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.core.services/1.0.0.v20120521-2346/org.eclipse.e4.core.services-1.0.0.v20120521-2346.jar
+9090e000-90910000 r--s 0000a000 08:01 188338     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.core.contexts/1.2.0.v20121221-192508/org.eclipse.e4.core.contexts-1.2.0.v20121221-192508.jar
+90910000-90912000 r--s 0000b000 08:01 188335     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.core.di/1.2.0.v20121024-173149/org.eclipse.e4.core.di-1.2.0.v20121024-173149.jar
+90912000-90914000 r--s 00003000 08:01 188332     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.core.commands/0.10.1.v20120523-1955/org.eclipse.e4.core.commands-0.10.1.v20120523-1955.jar
+90914000-90919000 r--s 0003b000 08:01 188329     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.help/3.6.0.v20120912-134126/org.eclipse.help-3.6.0.v20120912-134126.jar
+90919000-9091d000 r--s 00024000 08:01 188326     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.console/3.5.100.v20120521-2012/org.eclipse.ui.console-3.5.100.v20120521-2012.jar
+9091d000-90950000 r--s 0024c000 08:01 188323     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.debug.ui/3.8.2.v20130130-171415/org.eclipse.debug.ui-3.8.2.v20130130-171415.jar
+90950000-90958000 r--s 0004d000 08:01 188320     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.debug.core/3.7.100.v20120521-2012/org.eclipse.debug.core-3.7.100.v20120521-2012.jar
+90958000-9095a000 r--s 00007000 08:01 188317     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.variables/3.2.600.v20120521-2012/org.eclipse.core.variables-3.2.600.v20120521-2012.jar
+9095a000-9095d000 r--s 00013000 08:01 188314     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.app/1.3.100.v20120522-1841/org.eclipse.equinox.app-1.3.100.v20120522-1841.jar
+9095d000-9095f000 r--s 00015000 08:01 188311     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.jobs/3.5.300.v20120912-155018/org.eclipse.core.jobs-3.5.300.v20120912-155018.jar
+9095f000-90961000 r--s 0000d000 08:01 188308     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.filesystem/1.3.200.v20130115-145044/org.eclipse.core.filesystem-1.3.200.v20130115-145044.jar
+90961000-90966000 r--s 00038000 08:01 188305     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.text/3.5.200.v20120523-1310/org.eclipse.text-3.5.200.v20120523-1310.jar
+90966000-90969000 r--s 00019000 08:01 188302     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.filebuffers/3.5.200.v20120523-1310/org.eclipse.core.filebuffers-3.5.200.v20120523-1310.jar
+90969000-9096e000 r--s 00025000 08:01 188299     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.databinding.property/1.4.100.v20120523-1955/org.eclipse.core.databinding.property-1.4.100.v20120523-1955.jar
+9096e000-90976000 r--s 00041000 08:01 188296     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.databinding.observable/1.4.1.v20120521-2329/org.eclipse.core.databinding.observable-1.4.1.v20120521-2329.jar
+90976000-9097b000 r--s 0002d000 08:01 188293     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.databinding/1.4.1.v20120912-132807/org.eclipse.core.databinding-1.4.1.v20120912-132807.jar
+9097b000-9097e000 r--s 0002a000 08:01 188290     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.registry/3.5.200.v20120522-1841/org.eclipse.equinox.registry-3.5.200.v20120522-1841.jar
+9097e000-90981000 r--s 0001c000 08:01 188287     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.preferences/3.5.1.v20121031-182809/org.eclipse.equinox.preferences-3.5.1.v20121031-182809.jar
+90981000-90983000 r--s 00015000 08:01 188284     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.contenttype/3.4.200.v20120523-2004/org.eclipse.core.contenttype-3.4.200.v20120523-2004.jar
+90983000-90986000 r--s 00018000 08:01 188281     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.equinox.common/3.6.100.v20120522-1841/org.eclipse.equinox.common-3.6.100.v20120522-1841.jar
+90986000-90989000 r--s 00018000 08:01 188278     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.commands/3.6.2.v20130123-162658/org.eclipse.core.commands-3.6.2.v20130123-162658.jar
+90989000-909c5000 r--s 00629000 08:01 188275     /home/sniporbob/.m2/repository/p2/osgi/bundle/com.ibm.icu/4.4.2.v20110823/com.ibm.icu-4.4.2.v20110823.jar
+909c5000-909c7000 r--s 0000e000 08:01 188272     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.compare.core/3.5.200.v20120522-1148/org.eclipse.compare.core-3.5.200.v20120522-1148.jar
+909c7000-909cc000 r--s 00045000 08:01 188269     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.forms/3.5.200.v20120705-114351/org.eclipse.ui.forms-3.5.200.v20120705-114351.jar
+909cc000-909d8000 r--s 00081000 08:01 188266     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.editors/3.8.0.v20120523-1540/org.eclipse.ui.editors-3.8.0.v20120523-1540.jar
+909d8000-90a00000 r--s 00219000 08:01 188251     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.ide/3.8.2.v20121106-165923/org.eclipse.ui.ide-3.8.2.v20121106-165923.jar
+90a00000-90b00000 rw-p 00000000 00:00 0 
+90b00000-90b02000 r--s 00005000 08:01 188362     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.css.swt.theme/0.9.4.v20130123-162658/org.eclipse.e4.ui.css.swt.theme-0.9.4.v20130123-162658.jar
+90b02000-90b03000 r--s 00004000 08:01 188350     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.swt/3.100.1.v4236b/org.eclipse.swt-3.100.1.v4236b.jar
+90b03000-90b06000 r--s 00013000 08:01 188263     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.expressions/3.4.401.v20120912-155018/org.eclipse.core.expressions-3.4.401.v20120912-155018.jar
+90b06000-90b08000 r--s 00011000 08:01 188260     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.runtime/3.8.0.v20120912-155025/org.eclipse.core.runtime-3.8.0.v20120912-155025.jar
+90b08000-90b13000 r--s 00084000 08:01 188257     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.workbench.texteditor/3.8.0.v20120523-1310/org.eclipse.ui.workbench.texteditor-3.8.0.v20120523-1310.jar
+90b13000-90b16000 r--s 00014000 08:01 188254     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui.views/3.6.100.v20120705-114010/org.eclipse.ui.views-3.6.100.v20120705-114010.jar
+90b16000-90b29000 r--s 000e0000 08:01 188248     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.jface.text/3.8.2.v20121126-164145/org.eclipse.jface.text-3.8.2.v20121126-164145.jar
+90b29000-90b34000 r--s 000bb000 08:01 188245     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.core.resources/3.8.1.v20121114-124432/org.eclipse.core.resources-3.8.1.v20121114-124432.jar
+90b34000-90b38000 r--s 00022000 08:01 188242     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.ui/3.104.0.v20121024-145224/org.eclipse.ui-3.104.0.v20121024-145224.jar
+90b38000-90b46000 r--s 000a7000 08:01 188239     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.compare/3.5.301.v20130125-135424/org.eclipse.compare-3.5.301.v20130125-135424.jar
+90b46000-90b49000 r--s 00012000 08:01 188236     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.osgi.services/3.3.100.v20120522-1822/org.eclipse.osgi.services-3.3.100.v20120522-1822.jar
+90b49000-90b4b000 r--s 0000a000 08:01 188227     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.commons.logging/1.0.4.v201101211617/org.apache.commons.logging-1.0.4.v201101211617.jar
+90b4b000-90b50000 r--s 00045000 08:01 188224     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.commons.lang/2.6.0.v201205030909/org.apache.commons.lang-2.6.0.v201205030909.jar
+90b50000-90b57000 r--s 00022000 08:01 188218     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.batik.util.gui/1.6.0.v201011041432/org.apache.batik.util.gui-1.6.0.v201011041432.jar
+90b57000-90b5c000 r--s 00011000 08:01 188215     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.w3c.dom.svg/1.1.0.v201011041433/org.w3c.dom.svg-1.1.0.v201011041433.jar
+90b5c000-90b5d000 ---p 00000000 00:00 0 
+90b5d000-90bdd000 rw-p 00000000 00:00 0 
+90bdd000-90be0000 ---p 00000000 00:00 0 
+90be0000-90c2e000 rw-p 00000000 00:00 0 
+90c2e000-90c31000 ---p 00000000 00:00 0 
+90c31000-90caf000 rw-p 00000000 00:00 0 
+90caf000-90cb2000 ---p 00000000 00:00 0 
+90cb2000-90d00000 rw-p 00000000 00:00 0 
+90d00000-90f00000 r--p 00000000 08:01 140016     /usr/lib/locale/locale-archive
+90f00000-90fdb000 rw-p 00000000 00:00 0 
+90fdb000-91000000 ---p 00000000 00:00 0 
+91000000-91002000 r--s 0000a000 08:01 188347     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.ui.bindings/0.10.3.v20130123-162658/org.eclipse.e4.ui.bindings-0.10.3.v20130123-162658.jar
+91002000-91004000 r--s 00007000 08:01 188212     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.w3c.css.sac/1.3.1.v200903091627/org.w3c.css.sac-1.3.1.v200903091627.jar
+91004000-9100b000 r--s 0003a000 08:01 188206     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.batik.css/1.6.0.v201011041432/org.apache.batik.css-1.6.0.v201011041432.jar
+9100b000-91028000 r--s 001bb000 08:01 188733     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant.jar
+91028000-9102b000 ---p 00000000 00:00 0 
+9102b000-91079000 rw-p 00000000 00:00 0 
+91079000-9107c000 ---p 00000000 00:00 0 
+9107c000-910ca000 rw-p 00000000 00:00 0 
+910ca000-910cb000 ---p 00000000 00:00 0 
+910cb000-91196000 rw-p 00000000 00:00 0 
+91196000-91355000 r--s 039e5000 08:01 180825     /usr/lib/jvm/jdk1.7.0_67/jre/lib/rt.jar
+91355000-9137e000 rw-p 00000000 00:00 0 
+9137e000-91400000 rw-p 00000000 00:00 0 
+91400000-93ae0000 rw-p 00000000 00:00 0 
+93ae0000-9bea0000 rw-p 00000000 00:00 0 
+9bea0000-a0f19000 rw-p 00000000 00:00 0 
+a4230000-a431c000 rw-p 00000000 00:00 0 
+a431c000-b1400000 rw-p 00000000 00:00 0 
+b1400000-b23c0000 rw-p 00000000 00:00 0 
+b23c0000-b5400000 rw-p 00000000 00:00 0 
+b5400000-b5401000 r--s 00005000 08:01 188344     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.e4.core.di.extensions/0.11.100.v20121024-182359/org.eclipse.e4.core.di.extensions-0.11.100.v20121024-182359.jar
+b5401000-b5404000 r--s 00016000 08:01 188209     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.batik.util/1.6.0.v201011041432/org.apache.batik.util-1.6.0.v201011041432.jar
+b5404000-b5473000 rw-p 00000000 00:00 0 
+b5473000-b54b4000 rw-p 00000000 00:00 0 
+b54b4000-b54dd000 rw-p 00000000 00:00 0 
+b54dd000-b555f000 rw-p 00000000 00:00 0 
+b555f000-b5567000 rw-p 00000000 00:00 0 
+b5567000-b557f000 rw-p 00000000 00:00 0 
+b557f000-b5594000 rw-p 00000000 00:00 0 
+b5594000-b5600000 rw-p 00000000 00:00 0 
+b5600000-b5af8000 rwxp 00000000 00:00 0 
+b5af8000-b76fe000 rw-p 00000000 00:00 0 
+b76fe000-b7700000 ---p 00000000 00:00 0 
+b7700000-b7702000 r--s 00004000 08:01 188732     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-testutil.jar
+b7702000-b7703000 r--s 00003000 08:01 188731     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-swing.jar
+b7703000-b7705000 r--s 00003000 08:01 188730     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-netrexx.jar
+b7705000-b7706000 r--s 00004000 08:01 188729     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-launcher.jar
+b7706000-b7708000 r--s 00002000 08:01 188728     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-junit4.jar
+b7708000-b770b000 r--s 00018000 08:01 188727     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-junit.jar
+b770b000-b770d000 r--s 0000a000 08:01 188726     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-jsch.jar
+b770d000-b770f000 r--s 00002000 08:01 188725     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-jmf.jar
+b770f000-b7710000 r--s 00003000 08:01 188724     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-jdepend.jar
+b7710000-b7711000 r--s 00003000 08:01 188723     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-javamail.jar
+b7711000-b7713000 r--s 00006000 08:01 188722     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-jai.jar
+b7713000-b7716000 r--s 00014000 08:01 188721     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-commons-net.jar
+b7716000-b7717000 r--s 00002000 08:01 188720     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-commons-logging.jar
+b7717000-b7719000 r--s 00001000 08:01 188719     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-xalan2.jar
+b7719000-b771a000 r--s 00002000 08:01 188718     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-resolver.jar
+b771a000-b771b000 r--s 00002000 08:01 188717     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-regexp.jar
+b771b000-b771d000 r--s 0000a000 08:01 188716     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-oro.jar
+b771d000-b771e000 r--s 00002000 08:01 188715     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-log4j.jar
+b771e000-b771f000 r--s 00002000 08:01 188714     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-bsf.jar
+b771f000-b7720000 r--s 00003000 08:01 188713     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-apache-bcel.jar
+b7720000-b7721000 r--s 00002000 08:01 188712     /home/sniporbob/.m2/repository/.cache/tycho/org.apache.ant-1.8.3.v201301120609.jar/lib/ant-antlr.jar
+b7721000-b772a000 r--s 00032000 08:01 188200     /home/sniporbob/.m2/repository/p2/osgi/bundle/javax.xml/1.3.4.v201005080400/javax.xml-1.3.4.v201005080400.jar
+b772a000-b773e000 r--s 00142000 08:01 188191     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.eclipse.osgi/3.8.2.v20130124-134944/org.eclipse.osgi-3.8.2.v20130124-134944.jar
+b773e000-b774a000 r--s 00074000 08:01 188182     /home/sniporbob/.m2/repository/p2/osgi/bundle/com.google.inject/3.0.0.v201203062045/com.google.inject-3.0.0.v201203062045.jar
+b774a000-b7752000 rw-p 00000000 00:00 0 
+b7752000-b776b000 rw-p 00000000 00:00 0 
+b776b000-b776e000 ---p 00000000 00:00 0 
+b776e000-b77be000 rw-p 00000000 00:00 0 
+b77be000-b77bf000 r--s 0000b000 08:01 188221     /home/sniporbob/.m2/repository/p2/osgi/bundle/org.apache.commons.cli/1.2.0.v201105210650/org.apache.commons.cli-1.2.0.v201105210650.jar
+b77bf000-b77c0000 r--s 00006000 08:01 188194     /home/sniporbob/.m2/repository/p2/osgi/bundle/javax.annotation/1.1.0.v201209060031/javax.annotation-1.1.0.v201209060031.jar
+b77c0000-b77c1000 r--s 00002000 08:01 188185     /home/sniporbob/.m2/repository/p2/osgi/bundle/javax.inject/1.0.0.v20091030/javax.inject-1.0.0.v20091030.jar
+b77c1000-b77c3000 r--s 00016000 08:01 188069     /home/sniporbob/.m2/repository/org/apache/felix/org.apache.felix.fileinstall/3.2.6/org.apache.felix.fileinstall-3.2.6.jar
+b77c3000-b77c4000 r--p 005e0000 08:01 140016     /usr/lib/locale/locale-archive
+b77c4000-b77cc000 rw-s 00000000 08:01 529818     /tmp/hsperfdata_sniporbob/2330
+b77cc000-b77cd000 rw-p 00000000 00:00 0 
+b77cd000-b77ce000 ---p 00000000 00:00 0 
+b77ce000-b77d0000 rw-p 00000000 00:00 0 
+bfb9c000-bfb9d000 rwxp 00000000 00:00 0 
+bfbca000-bfbf0000 rw-p 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -Xmx512m 
+java_command: org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher src/org/openhab/model/GenerateSitemap.mwe2
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/jdk1.7.0_67
+PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x50e2d0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x50e2d0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x404e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x404e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x404e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x404e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x406680], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x407980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x407980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x407980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x407980], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:wheezy/sid
+
+uname:Linux 3.2.0-23-generic-pae #36-Ubuntu SMP Tue Apr 10 22:19:09 UTC 2012 i686
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 7896, NOFILE 4096, AS infinity
+load average:2.07 1.52 0.76
+
+/proc/meminfo:
+MemTotal:        1025272 kB
+MemFree:           65784 kB
+Buffers:            4784 kB
+Cached:            25320 kB
+SwapCached:            0 kB
+Active:           898524 kB
+Inactive:          18460 kB
+Active(anon):     887552 kB
+Inactive(anon):     3352 kB
+Active(file):      10972 kB
+Inactive(file):    15108 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+HighTotal:        135112 kB
+HighFree:            136 kB
+LowTotal:         890160 kB
+LowFree:           65648 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               648 kB
+Writeback:             0 kB
+AnonPages:        886936 kB
+Mapped:            13976 kB
+Shmem:              3960 kB
+Slab:              22192 kB
+SReclaimable:      11708 kB
+SUnreclaim:        10484 kB
+KernelStack:        2656 kB
+PageTables:        10376 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      512636 kB
+Committed_AS:    2518976 kB
+VmallocTotal:     122880 kB
+VmallocUsed:        3160 kB
+VmallocChunk:     118580 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       24568 kB
+DirectMap2M:      888832 kB
+
+
+CPU:total 1 (4 cores per cpu, 2 threads per core) family 6 model 26 stepping 5, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht, tsc, tscinvbit, tscinv
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Core(TM) i7 CPU         950  @ 3.07GHz
+stepping	: 5
+cpu MHz		: 3761.143
+cache size	: 6144 KB
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 5
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 rdtscp constant_tsc up pni monitor ssse3
+bogomips	: 7522.28
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 1025272k(65660k free), swap 0k(0k free)
+
+vm_info: Java HotSpot(TM) Client VM (24.65-b04) for linux-x86 JRE (1.7.0_67-b01), built on Jul 25 2014 08:57:40 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Sat Aug  9 23:20:52 2014
+elapsed time: 22 seconds
+
