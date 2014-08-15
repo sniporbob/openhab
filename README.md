@@ -5,7 +5,7 @@ The purpose of this fork is to get the old xbee binding for openhab 1.3 working 
 I have also replaced the nrjavaserial jar file with one that does not finalize the RXTXPort class:
 https://github.com/NeuronRobotics/nrjavaserial
 
-The code will compile with maven until it gets to Building openHAB Model Sitemap UI Plugin 1.6.0-SNAPSHOT, at which point the java runtime environment encounters a fatal error.
+This will not build successfully on Maven for Windows. The xbee binding causes a negative time error and Maven aborts. It does work on Linux though, provided you allow Maven enough memory. I found that the virtual Ubuntu machine required at least 2GB ram, and I used: export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
 
 ## Introduction
 
