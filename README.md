@@ -1,9 +1,10 @@
 ## About This Fork
 
-The purpose of this fork is to get the old xbee binding for openhab 1.3 working again. The old xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
+The purpose of this fork is to have the old xbee binding for openhab 1.3 working again. The old xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
 
 I have also replaced the nrjavaserial jar file with one that does not finalize the RXTXPort class:
 https://github.com/NeuronRobotics/nrjavaserial
+I have no clue if this is a bad thing or not. I don't know what I'm doing when it comes to java, but since I can't rewrite the binding so that it does not extend RXTXPort this was the only option for me.
 
 This will not build successfully on Maven for Windows. The xbee binding causes a negative time error and Maven aborts. It does work on Linux though, provided you allow Maven enough memory. I found that the virtual Ubuntu machine required at least 2GB ram, and I used: export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
 
