@@ -33,6 +33,8 @@ Thanks to the low-level implementation it is possible to support more response t
 
 ## Examples
 
+The following was also taken from here: https://code.google.com/p/openhab/issues/detail?id=388
+
 I send a request from 0011223344556677 to the XBee on OpenHAB with temperature (as float) encoded on first 4 bytes and read it from OpenHAB with this:
 <znetrxresponse@0011223344556677#0[float]
 
