@@ -1,4 +1,4 @@
-## This Fork
+## About This Fork
 
 The purpose of this fork is to get the old xbee binding for openhab 1.3 working again. The old xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
 
@@ -6,6 +6,46 @@ I have also replaced the nrjavaserial jar file with one that does not finalize t
 https://github.com/NeuronRobotics/nrjavaserial
 
 This will not build successfully on Maven for Windows. The xbee binding causes a negative time error and Maven aborts. It does work on Linux though, provided you allow Maven enough memory. I found that the virtual Ubuntu machine required at least 2GB ram, and I used: export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
+
+## XBee Binding Documentation
+
+First thing first - so far, this binding only works for receiving data from an xbee. It is not yet possible to use this binding to transmit data. The original author never got around to coding the transmit part of the binding.
+
+The following was taken from here: https://code.google.com/p/openhab/issues/detail?id=388
+
+Configuration:
+
+ZNetRxResponse Pattern: "<(?<responseType>\\w+)@(?<address>([0-9a-zA-Z])+)#(?<dataOffset>\\d+)(\\[(?<dataType>\\w+)\\])?(:(?<firstByte>\\d{1,3}))?"
+ZNetRxResponse Example: <znetrxresponse@1122334455667788#0
+What it does: This will extract bytes starting from byte 0 from the ZNetRxResponse from the address 1122334455667788. Bytes must be big endian and will be converted to the appropriate type depending on the type of the item. Number => DecimalType (4 bytes float), Dimmer => PercentType (1 byte), SwitchItem => OnOffType (1 byte), ContactItem => OpenCloseType (1 byte).
+Use case: Custom XBee sensor with microcontrollers like arduino and multiple inputs. Digital temperature + humidity sensor
+UPDATE: It's now possible to specify a dataType for Number items. When unpacking, if dataType is float or int, 4 bytes will be read, if it's byte, a single one will be read. This allows Dimmer/Contact to fit on a single byte (0-255 is enough)
+It's also possible to identify each responses as unique using first byte of data as "identifier". If different requests comes from the same address, they can thus be treated differently.
+Use case: Temperature (float) & Humidity (byte) every 30s using firstByte to 0
+Presence sensor (byte) every change using firstByte to 1
+
+ZNetRxIoSampleResponse Pattern: <(?<responseType>\\w+)@(?<address>([0-9a-zA-Z])+)#(?<pin>[AD][0-9]{1,2})(:(?<transformation>.*))?
+ZNetRxIoSampleResponse Example: <znetrxiosampleresponse@1122334455667788#A0:10*x-0.5
+What it does: This will read pin A0 from the ZNetRxIoSampleResponse from the address 1122334455667788 and will apply the formula 10*(read value as int 0-1023)-0.5
+Use case: Standalone XBee with analog sensor like an temperature sensor. As the XBee has many inputs you can even add a digital sensor like a contact sensor.
+
+Thanks to the low-level implementation it is possible to support more response types and more high-level responses like ZNetExplicitRxResponse and hence provide ZCL support.
+
+## Examples
+
+I send a request from 0011223344556677 to the XBee on OpenHAB with temperature (as float) encoded on first 4 bytes and read it from OpenHAB with this:
+<znetrxresponse@0011223344556677#0[float]
+
+Same thing with humidity on another sensor. Values fits on one byte so its encoded as such, starting from byte 5. First byte is used as identifier and has to be 0:
+<znetrxresponse@1122334455667788#5[byte]:0
+
+This way I can catch another request from the same sensor into a different item. This is a presence sensor so I use a Contact item. First byte is used as identifier and has to be 1:
+<znetrxresponse@1122334455667788#1:1
+I didnt specified the type here, it should be [byte] but this is obvious because I read a contact item which has only two states (1 bit).
+
+Now more complex, reading analog input of the XBee directly from the IO Sample responses:
+<znetrxiosampleresponse@2233445566778899#A0:((x/1024.0)*1.2-0.5)*100
+The conversion functions purpose is to transfom the raw analog value (0-1024) to actual temperature, using the sensors specification.
 
 ## Introduction
 
