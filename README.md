@@ -1,13 +1,16 @@
 ## About This Fork
 
-The purpose of this fork is to have the old xbee binding for openhab 1.3 working again. The old xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
+The purpose of this fork is to have the old xbee binding for openhab 1.3 working again. The original xbee binding is from here: https://code.google.com/r/diaoulael-xbee/
 
-I have also replaced the nrjavaserial jar file with one that does not finalize the RXTXPort class:
-https://github.com/NeuronRobotics/nrjavaserial . I have no clue if this is a bad thing or not. I don't know what I'm doing when it comes to java, but since I can't rewrite the binding so that it does not extend RXTXPort this was the only option for me.
+Please note: This binding is unfinished and there is currently no way for openhab to transmit data to remote XBees. The original author never got around to adding that part of the binding. Currently it is only possible to receive data. Since I don't know how to program Java, everyone is encouraged to finish writing the missing code to allow openhab to transmit!
+
+This fork is currently using nrjavaserial-3.9.3 which is a few versions ahead of the current version bundled with openhab. Supposedly the version openhab is on has finalized the RXTXPort class (which breaks the xbee binding), whereas 3.9.3 doesn't have the class finalized.
 
 This will not build successfully on Maven for Windows. The xbee binding causes a negative time error and Maven aborts. It does work on Linux though, provided you allow Maven enough memory. I found that the virtual Ubuntu machine required at least 2GB ram, and I used: export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
 
 ## XBee Binding Documentation
+
+See XBeeConfigReadme.txt for instructions and examples.
 
 First thing first - so far, this binding only works for receiving data from an xbee. It is not yet possible to use this binding to transmit data. The original author never got around to coding the transmit part of the binding.
 
